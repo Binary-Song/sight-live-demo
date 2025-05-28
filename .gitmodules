@@ -1,0 +1,3 @@
+[submodule "sight-lang"]
+	path = sight-lang
+	url = https://github.com/Binary-Song/sight-lang
