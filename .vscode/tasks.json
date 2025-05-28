@@ -1,0 +1,70 @@
+{
+    // See https://code.visualstudio.com/docs/editor/tasks for more information
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "only build demo",
+            "type": "shell",
+            "command": "npm run build",
+            "options": {
+                "cwd": "www"
+            },
+            "group": "build",
+            "problemMatcher": [],
+        },
+        {
+            "label": "remove old files",
+            "type": "shell",
+            "windows":{
+                "command": "rm -r -Force docs/*; rm -r -Force www/dist/*",
+            },
+            "command": "rm -rf docs/* www/dist/*",
+            "problemMatcher": [],
+        },
+        {
+            "label": "copy dist files",
+            "type": "shell",
+            "command": "npx copyfiles -u 1 \"www/dist/**/*\" docs/",
+            "problemMatcher": [],
+            "dependsOrder": "sequence"
+        },
+        {
+            "label": "only build wasm",
+            "type": "shell",
+            "command": "wasm-pack build",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+        },
+        {
+            "label": "build all",
+            "dependsOn": [
+                "only build wasm",
+                "build demo",
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": [],
+        },
+        {
+            "label": "build demo",
+            "dependsOn": [
+                "remove old files",
+                "only build demo",
+                "copy dist files",
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": [],
+        },
+        {
+            "label": "serve",
+            "type": "shell",
+            "command": "npm run start",
+            "problemMatcher": [],
+            "options": {
+                "cwd": "www"  
+            },
+            "dependsOrder": "sequence"
+        }
+    ]
+}

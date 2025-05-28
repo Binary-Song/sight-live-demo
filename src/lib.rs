@@ -9,5 +9,5 @@ pub fn type_source(source: &str) -> Option<String> {
 
     let term = parse(source).unwrap();
     let ty = type_term_with_source(term, source)?;
-    Some(format!("{ty:?}"))
+    Some(format!("Type = {ty:?}"))
 }
