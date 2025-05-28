@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Add this in the <head> section -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="utf-8">
+  <title>Sight Live Demo</title>
+</head>
+
+<body
+  class="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 flex items-center justify-center">
+  <!-- This message is shown if JavaScript is disabled in the browser -->
+  <noscript>
+    <div
+      class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative max-w-md mx-auto mt-10 shadow-lg">
+      This page contains webassembly and javascript content, please enable javascript in your browser.
+    </div>
+  </noscript>
+
+  <div class="bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl p-10 max-w-md w-full text-center">
+    <h1 class="text-4xl font-extrabold text-white mb-4 drop-shadow-lg tracking-tight">
+      👁️ Sight Live Demo
+    </h1>
+    <p class="text-lg text-gray-200 mb-8">
+      Type inference powered by WebAssembly.<br>Try an expression below!
+    </p>
+    <div class="flex flex-col gap-4">
+      <!-- Input field for user to enter text; id is used to access it in JS -->
+      <input id="user-input" type="text" placeholder="Enter value here"
+        class="px-4 py-3 rounded-lg border-2 border-transparent focus:border-pink-400 focus:ring-2 focus:ring-pink-200 bg-white/80 text-gray-800 placeholder-gray-400 transition outline-none" />
+      <!-- Button to trigger the type_source function; id is used in JS -->
+      <button id="run-btn"
+        class="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white font-bold rounded-lg shadow-lg hover:scale-105 hover:from-pink-400 hover:to-purple-400 transition-transform">
+        Type infer this expression
+      </button>
+      <!-- Output area to display the result; id is used in JS -->
+      <div id="output-box"
+        class="mt-4 bg-gray-900/80 text-pink-200 rounded-lg p-4 min-h-[3rem] shadow-inner border border-pink-700">
+        This is output
+      </div>
+    </div>
+  </div>
+
+  <!-- Load the main JavaScript file for the app -->
+  <script src="./bootstrap.js"></script>
+  <script>
+    window.onload = function () {
+      document.getElementById('user-input').value = '{ let a = fn (x) { x }; let b = a(1); a }';
+    }
+  </script>
+</body>
+
+</html>
