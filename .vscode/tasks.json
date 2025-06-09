@@ -16,17 +16,10 @@
             "label": "remove old files",
             "type": "shell",
             "windows":{
-                "command": "rm -r -Force docs/*; rm -r -Force www/dist/*",
+                "command": "rm -r -Force www/dist/*",
             },
-            "command": "rm -rf docs/* www/dist/*",
+            "command": "rm -rf www/dist/*",
             "problemMatcher": [],
-        },
-        {
-            "label": "copy dist files",
-            "type": "shell",
-            "command": "npx copyfiles -u 1 \"www/dist/**/*\" docs/",
-            "problemMatcher": [],
-            "dependsOrder": "sequence"
         },
         {
             "label": "only build wasm",
@@ -51,7 +44,6 @@
             "dependsOn": [
                 "remove old files",
                 "only build demo",
-                "copy dist files",
             ],
             "dependsOrder": "sequence",
             "problemMatcher": [],
@@ -62,7 +54,7 @@
             "command": "npm run start",
             "problemMatcher": [],
             "options": {
-                "cwd": "www"  
+                "cwd": "www"
             },
             "dependsOrder": "sequence"
         }
